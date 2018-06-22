@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h3>v-on事件监听</h3>
+    <hr>
+    <div id="app">
+        <div>得分{{count}}</div>
+        <button @click="add">加分</button>
+        <button @click="reduce">减分</button>
+        <br>
+        <input type="text" @keyup.enter="addScore" v-model.number="score">
+    </div>
+
+    <script>
+    var vm =  new Vue({
+        el:'#app',
+        data: {
+            count: 0,
+            score: 1
+        },
+        methods: {
+            add: function(){
+                this.count += 1;
+            },
+            reduce:function(){
+                this.count -= 1;
+            },
+            addScore: function(){
+                this.count = this.count + this.score;
+            }
+        }
+
+    })
+    </script>
+</body>
+</html>

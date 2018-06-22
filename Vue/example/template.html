@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  
+    <h2>template 模板的三中写法</h2>
+    <hr>
+    <div id="add"></div>
+    
+    <template id="add1">
+            <h3 style="color: red;">我是template标签模板</h3>
+    </template>
+
+    <script id="add2" type="x-template">
+        <h3 style="color: red;">我是script标签模板</h3>
+    </script>
+
+    <script>
+        var vm = new Vue({
+            el: '#add',
+            data: {
+                message: "hello world"
+            },
+            // template:`
+            //     <h3 style="color: red;">我是template选项模板</h3>
+            // `
+            template: '#add2'
+        });
+    </script>
+</body>
+</html>

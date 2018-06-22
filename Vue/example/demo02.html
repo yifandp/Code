@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //第一种
+        function toArrOnly(arr){
+        
+        var newArr = [];
+        for(var i=0; i<arr.length; i++){
+            if(arr[i] instanceof Object){
+                    if(arr[i] instanceof Array){
+                        console.log(arr[i])
+                        toArrOnly(arr[i])
+                    }
+                }else{
+                    if(newArr.indexOf(arr[i]) == -1){
+                        newArr.push(arr[i])
+                    }
+                }
+        }
+        return newArr;
+        }
+
+
+
+        //第二种
+        function toArrOnly2(arr){
+        
+        var newArr = [];
+        var obj = {};
+        for(var i=0; i<arr.length; i++){
+                if(!obj[arr[i]]){
+                        newArr.push(arr[i]);
+                        obj[arr[i]] = 1;
+                }
+                
+        }
+        return newArr;
+        }
+
+        var result = toArrOnly2(["china","a","b",32,132,1,"china","a"]);
+        console.log(result)
+    </script>
+</body>
+</html>

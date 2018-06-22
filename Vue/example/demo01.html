@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+    .num-one {
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        margin: 20px auto;
+        border-radius: 5px;
+        background-color: #2695f3;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bolder;
+    }
+
+    .num-two {
+        width: 200px;
+        margin: 10px auto;
+    }
+
+    .form-control {
+        display: block;
+        width: 88%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    </style>
+</head>
+
+<body>
+    <div id='number' class='num-one'>
+        120
+    </div>
+    <div class='num-two form-group'>
+        <input type='text' class='form-control' onblur='downInputFun(event,this)' onkeyup='downInputFun(event,this)' placeholder='请输入整数'>
+    </div>
+
+    <script>
+        function magic_number(inputObj, value) {
+            if (!inputObj) return;
+            var currVal = inputObj.text();
+            currVal = parseInt(currVal),
+                midElemnt = 0;
+            if (currVal > value) {
+                midElemnt = -1;
+            } else if (currVal < value) {
+                midElemnt = 1;
+            }
+            currVal = currVal + midElemnt;
+            inputObj.text(currVal);
+            var timer = setTimeout(function () {
+                if (value !== currVal) {
+                    magic_number(inputObj, value);
+                } else {
+                    clearTimeout(timer);
+                    $('#number').data('status', 0);
+                }
+            },
+            5)
+        };
+
+        function downInputFun(event) {
+            var keyNum = event.keyCode || 0,
+                seeNum = event.target.value,
+                status = $('#number').data('status');
+            seeNum = parseInt(seeNum);
+            if (isNaN(seeNum) || status) return;
+            if (keyNum === 13 || !keyNum) {
+                $('#number').data('status', 1);
+                magic_number($('#number'), seeNum);
+            }
+        }
+    </script>
+</body>
+
+</html>

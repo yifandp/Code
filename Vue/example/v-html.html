@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h3>v-html指令的用法</h3>
+    <hr>
+    <div id="app">
+        <span v-html="temp"></span>
+    </div>
+
+    <script>
+    // 需要注意的是：在生产环境中动态渲染HTML是非常危险的，因为容易导致XSS攻击。所以只能在可信的内容上使用v-html，永远不要在用户提交和可操作的网页上使用。
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            temp: '<h4>这是渲染html</h4>'
+        }
+    })
+    </script>
+</body>
+</html>

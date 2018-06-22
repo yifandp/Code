@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    /* *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        width:100%;
+        height: 220px;
+        background: #000;
+        overflow: hidden;
+        position: relative;
+    }
+    .inner{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 1440px;
+        background: url('http://pic.58pic.com/58pic/14/28/34/23P58PICSjT_1024.jpg') center center / 150%;
+        filter:blur(64px);
+    } */
+    </style>
+</head>
+<body>
+    <!-- <div class="box">
+        <div class="inner">
+        </div>
+    </div> -->
+    <div id="app">
+        <p><span>{{count}}</span></p>
+        <ul>
+            <li v-for = "arr in arrs">{{arr}}</li>
+        </ul>
+
+        <p>
+            <button onclick="add()">添加外部数据</button>
+        </p>
+    </div>
+
+    <script>
+
+        function add(){
+            // vm.arrs[1] = 'Alies' 由于javascript的限制 此方法不行
+            Vue.set(outData.arrs,1,'Alies');
+        }
+
+        let outData = {
+            count: 1,
+            arrs:['Tom','Jery','Kara','Connor','Makous','Hank']
+        }
+
+        let vm = new Vue({
+            el: "#app",
+            data: outData
+        })
+        
+        // 在外部改变数据的三种方法：
+        // 1. 直接操作外部数据
+           // outData.count++;
+        // 2.用Vue对象的方法添加
+            // vm.count++;
+        // 3.用Vue.set改变
+            // Vue.set(outData,'count',4);
+
+        /*
+            由于Javascript的限制，Vue不能自动检测以下变动的数组。
+
+            *当你利用索引直接设置一个项时，vue不会为我们自动更新。
+
+            *当你修改数组的长度时，vue不会为我们自动更新。
+        */
+
+
+
+    </script>
+</body>
+</html>

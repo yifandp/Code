@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .pic{
+            width: 200px;
+            border-radius: 6px;
+            border: 12px solid #eee;
+        }
+        .pic img{
+            vertical-align: middle;
+        }
+        .classRed{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h3>v-bind指令的用法</h3>
+    <hr>
+    <div id="app">
+        <div v-bind:class="styleClass">
+            <img :src="srcUrl" alt="" width="200">
+        </div>
+        <p>v-bind指令的用法</p>
+        <p :class="{classRed:isOk}">v-bind指令的用法</p>
+        <div>
+            <input type="checkbox" value="isOk" v-model="isOk">
+            <label for="isOk">isOk{{isOk}}</label>
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data:{
+                srcUrl: "http://pic.58pic.com/58pic/14/28/34/23P58PICSjT_1024.jpg",
+                styleClass: 'pic',
+                isOk: false
+            }
+        })
+    </script>
+</body>
+</html>

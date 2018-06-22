@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-dir="color" id="demo">
+            {{num}}
+        </div>
+        <div>
+            <button @click="add">Add</button>
+        </div>
+        <div>
+            <button onclick="unbind()">解绑</button>
+        </div>
+    </div>
+
+    <script>
+        /*
+        Vue.directive("dir",function(el,binding){
+            console.log(el);
+            console.log(binding);
+            el.style =  'color:' + binding.value;
+        })
+        */
+        function unbind(){
+            vm.$destroy();
+        }
+
+        Vue.directive("dir",{
+            bind:function(el,binding){
+                el.style = 'color:' + binding.value;
+                // 被绑定
+                console.log('1 - bind  被绑定');
+            },
+            inserted: function(){
+                // 绑定到节点
+                console.log('2 - inserted 绑定到节点');
+            },
+            update: function(){
+                // 组件更新
+                console.log('3 - update 组件更新');
+            },
+            componentUpdated: function(){
+                // 组件更新完成
+                console.log('4 - componentUpdated 组件更新完成');
+            },
+            unbind: function(){ 
+                // 解绑
+                console.log('5 - unbind 解绑');
+            }
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                num:0,
+                color: 'red'
+            },
+            methods:{
+                add: function(){
+                    this.num++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h3>v-show 判断是否加载</h3>
+    <hr>
+    <div id="app">
+        <div v-show="isVip">你好！会员你好</div>
+    </div>
+
+    <script>
+    /**
+    调整css中display属性，DOM已经加载，只是CSS控制没有显示出来。
+    */
+
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            isVip: true
+        }
+    })
+
+    /**
+        v-if 和v-show的区别：
+        v-if： 判断是否加载，可以减轻服务器的压力，在需要时加载。
+        v-show：调整css dispaly属性，可以使客户端操作更加流畅。
+    */
+    </script>
+</body>
+</html>
