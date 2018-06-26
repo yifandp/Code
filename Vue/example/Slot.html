@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h3>slot 内部组件</h3>
+    <hr>
+    <div id="app">
+        <web>
+            <span slot="netName">{{webapp.netName}}</span>  <!-- solt属性将值传递 -->
+            <span slot="skill">{{webapp.skill}}</span>
+            <span slot="bolgUrl">{{webapp.bolgUrl}}</span>
+        </web>
+    </div>
+
+    <template id="temp">
+        <div>
+            <p>网名：<slot name="netName"></slot></p> <!-- slot 标签将值接收 -->
+            <p>技能类型：<slot name="skill"></slot></p>
+            <p>博客：<slot name="bolgUrl"></slot></p>
+        </div>
+    </template>
+
+
+    <script>
+    var web = {
+        template:'#temp'
+    }
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            webapp:{
+                netName:'web',
+                skill:'web前端',
+                bolgUrl:'www.jspang.com'
+            }
+        },
+        components:{
+            'web':web
+        }
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{count}}</p>
+        <button @click = "add(2)">add</button>
+        <btn @click.native = "add(4)"></btn>
+    </div>
+    <button onclick="vm.add(1)">button</button>
+
+    <script>
+    var btn = {
+        template: `<button>Button</button>`
+    }
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            count : 1
+        },
+        methods: {
+            add: function(num){
+                // console.log(event);
+                if(num != ''){
+                    this.count+=num;
+                }else{
+                    this.count++;
+                }
+            }
+        },
+        components:{
+            'btn':btn
+        }
+    })
+    </script>
+</body>
+</html>

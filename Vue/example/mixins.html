@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h3>mixins Mixins 混入选项操作</h3>
+        <hr>
+        <div>
+            <p>{{count}}</p>
+            <button @click="add">add</button>
+        </div>
+    </div>
+
+    <script>
+    var addConsole = {
+        updated :function(){
+            console.log('数据发生了改变'+ this.count);
+        }
+    }
+
+    Vue.mixin({
+        updated :function(){
+            console.log('数据发生了改变'+ this.count);
+        }
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            count: 1
+        },
+        methods:{
+            add: function(){
+                this.count++;
+            }
+        },
+        mixins:[addConsole]
+        // 原生的updated 与mixins 在Vue中都是mixins 先执行
+        // updated: function(){
+
+        // }
+    })
+    </script>
+</body>
+</html>

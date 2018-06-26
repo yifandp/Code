@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h2>component -2    </h2>
+    <hr>
+    <div id="app">
+        <!-- <vuetemp :say-hi="message"></vuetemp> -->
+        <vuetemp say-hi="hello world"></vuetemp>
+    </div>
+
+    <script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: 'China'
+        },
+        components: {
+            'vuetemp':{
+                template: `<h3><p>我是局部的vueTemp组件{{sayHi}}</p></h3>`,
+                props:['sayHi']
+            }
+        }
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{num}}</p>
+        <button @click="add">add</button>
+        <button onclick="reduce()">reduce</button>
+        <button onclick="off()">off</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                num:1
+            },
+            methods:{
+                add: function(){
+                    this.num++;
+                }
+            }
+        })
+
+        vm.$on('reduce',function(){
+            console.log('执行了reduce方法')
+            this.num--;
+        });
+        
+        // $on(方法名，函数)；需要$emit 调用
+        function reduce(){
+            vm.$emit('reduce');
+        }
+
+        /* 执行一次的事件
+        vm.$once('reduce',function(){
+            console.log('执行了reduce方法')
+            this.num--;
+        });
+        */
+
+        // $off关闭事件
+        function off(){
+            console.log('关闭了reduce方法')
+            vm.$off('reduce');
+        }
+    </script>
+</body>
+</html>

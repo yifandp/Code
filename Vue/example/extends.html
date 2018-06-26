@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h3>Extends option扩展</h3>
+        <hr>
+        <div>
+            <p>{{message}}</p>
+            <button @click="print">print</button>
+        </div>
+    </div>
+
+    <script>
+    var sayHi = {
+        created: function(){
+            console.log('我是扩展出来的')
+        },
+        // 此方法不会执行
+        methods:{
+            print: function(){
+                console.log('我是扩展出来的方法！')
+            }
+        }
+    }
+
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            message: 'hello Vue!'
+        },
+        methods: {
+            print:function(){
+                console.log('我是原生的方法');
+            }
+        },
+        extends:sayHi,
+        // delimiters的作用是改变我们插值的符号。
+        // Vue默认的插值是双大括号{{}}。但有时我们会有需求更改这个插值的形式。
+        // delimiters:['${','}']
+    })
+    </script>
+</body>
+</html>
